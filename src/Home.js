@@ -14,28 +14,28 @@ const Home = () => {
                 status: task.status === 'Done' ? 'Not done' : 'Done'
             })
         })
-        .then(res => {
-            if (!res.ok) {
-                throw Error("Could not update task");
-            }
-            setTasks(prevTasks =>
-                prevTasks.map(task =>
-                    task._id === id
-                        ? { ...task, status: task.status === 'Done' ? 'Not done' : 'Done' }
-                        : task
-                )
-            );
-        })
+            .then(res => {
+                if (!res.ok) {
+                    throw Error("Could not update task");
+                }
+                setTasks(prevTasks =>
+                    prevTasks.map(task =>
+                        task._id === id
+                            ? { ...task, status: task.status === 'Done' ? 'Not done' : 'Done' }
+                            : task
+                    )
+                );
+            })
     };
 
-    return ( 
+    return (
         <div className="home">
-            <h1> TO-DO LIST </h1>
-            { error && <div>{ error }</div> }
-            { isPending && <div>Loading...</div> }
-            { tasks && <TaskList tasks={tasks} setTasks={setTasks} changeStatus={changeStatus} /> }
+            <h1>TO-DO LIST</h1>
+            {error && <div>{error}</div>}
+            {isPending && <div>Loading...</div>}
+            {tasks && <TaskList tasks={tasks} setTasks={setTasks} changeStatus={changeStatus} />}
         </div>
-     );
+    );
 }
 
 export default Home;
